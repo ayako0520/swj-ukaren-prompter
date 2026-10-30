@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>宇科連 3P19 | 日本語プロンプター</title>
+<style>
+:root{color-scheme:dark;--ink:#f9f8f5;--muted:#acb8d0;--accent:#f3c87f;--bg:#0b1e36;--line:#344967;--size:34px}
+*{box-sizing:border-box}html,body{height:100%;margin:0}body{font-family:"Hiragino Sans","BIZ UDPGothic","Yu Gothic",sans-serif;background:var(--bg);color:var(--ink)}
+header{height:75px;padding:10px max(16px,env(safe-area-inset-left)) 8px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line)}
+.brand{min-width:0;flex:1}.brand small{display:block;color:var(--accent);font-weight:700;letter-spacing:.06em;font-size:14px}.brand span{display:block;color:var(--muted);font-size:12px;margin-top:3px}
+.timer{font-variant-numeric:tabular-nums;font-size:19px;color:var(--accent);font-weight:700}.timer.over{color:#ff6b6b}
+.topbtn{background:none;color:var(--ink);border:1px solid var(--line);border-radius:10px;min-width:42px;height:42px;font-size:17px}
+#reader{height:calc(100dvh - 153px - env(safe-area-inset-bottom));overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none}#reader::-webkit-scrollbar{display:none}
+article{max-width:800px;margin:auto;padding:24px 22px 48vh}h1{font-size:clamp(20px,4.6vw,30px);line-height:1.35;margin:0 0 26px;color:var(--accent)}
+#speech{font-size:var(--size);font-weight:600;line-height:1.6}#speech p{margin:0 0 .9em}
+footer{position:fixed;bottom:0;left:0;right:0;min-height:78px;padding:9px max(14px,env(safe-area-inset-left)) calc(9px + env(safe-area-inset-bottom));display:flex;gap:9px;background:#08172b;border-top:1px solid var(--line)}
+footer button{border:0;border-radius:12px;color:var(--ink);background:#29426b;font-size:17px;font-weight:700;min-height:52px}#prev,#next{flex:1}#play{flex:1.3;background:#f38b2c;color:#0b1e36}
+.progress{position:fixed;top:75px;left:0;height:3px;background:#f38b2c;transition:width .2s}
+@media(max-width:550px){:root{--size:29px}header{height:69px}#reader{height:calc(100dvh - 147px - env(safe-area-inset-bottom))}.progress{top:69px}.topbtn{min-width:38px;height:38px;font-size:15px}}
+</style>
+</head>
+<body>
+<header><div class="brand"><small id="counter"></small><span id="target"></span></div><span class="timer" id="timer">00:00</span><button class="topbtn" id="reset" aria-label="タイマーをリセット">↺</button><button class="topbtn" id="speed" aria-label="自動スクロールの速度">1×</button><button class="topbtn" id="smaller" aria-label="文字を小さく">A−</button><button class="topbtn" id="larger" aria-label="文字を大きく">A＋</button></header>
+<div class="progress" id="progress"></div>
+<main id="reader"><article><h1 id="heading"></h1><div id="speech"></div></article></main>
+<footer><button id="prev">◀ 前</button><button id="play">▶ 開始</button><button id="next">次 ▶</button></footer>
+<script>
+const slides=[{"title":"表紙：宇宙政策における社会的支持形成の制度設計","text":"第70回宇宙科学技術連合講演会、3P19です。Space Wave Japanの黒野亜矢子です。本日は「宇宙政策における社会的支持形成の制度設計」について、NASA Socialを事例に、日米を比較しながらお話しします。結論を先に申し上げると、市民発信者に現場への公平なアクセスを開き、その効果を測る小規模実証「Japan Space Social」を提案します。","start":0},{"title":"市民は宇宙開発の「観客」にとどまりやすい","text":"宇宙開発の原資を負担しているのは市民です。しかし市民は、現場に近づく機会が少ないという物理的な距離と、専門家ではない自分が語ってよいのかという心理的な距離、この二重の壁によって、動向を見守る観客の位置にとどまりやすいと考えます。一方で、衛星測位や地図情報のように、宇宙はすでに生活インフラです。何が技術的に可能かだけでなく、何を優先すべきかという判断にも、社会全体が関わる必要があります。","start":36},{"title":"理念はある。未整備なのは運用経路と評価方法","text":"政策文書に共感形成の視点がない、という見方もあります。しかし宇宙基本計画は、宇宙科学や探査の成果が子どもの好奇心を喚起し、次世代人材の育成につながると明記しています。工程表改訂に向けた重点事項も、情報発信による国民理解を、人材育成や国際プレゼンスに接続する必要性を示しています。理念はあります。未整備なのは、関心を学習、参加、進学や転職、事業参入へ移す運用経路と、その効果を測る評価方法です。","start":75},{"title":"研究課題と方法：探索的な仮説生成研究","text":"研究課題は、一次情報と現場へのアクセスを、市民発信者の生活や職業、地域のネットワークを通じて社会につなぎ、その効果を検証可能な形で制度化するには、どのような設計が必要か、です。方法として、政策文書分析、NASA Socialの制度分析、Crew-10関連NASA Socialへの参加観察、既報アンケートの二次的検討、SWJの活動記録の五つを組み合わせました。本研究は探索的な仮説生成研究であり、因果効果を証明するものではありません。","start":114},{"title":"現行施策の空白：市民発信者を制度的に迎える仕組み","text":"現行施策は、大学教育、研究者育成、学校教育、企業支援、人材交流、そしてJAXAの公式広報など多岐にわたります。いずれも必要な施策です。一方、公開資料からは、非専門の市民発信者を公募で選び、報道機関とは異なる立場で現場取材や専門家との対話の機会を与え、その効果を継続的に評価する仕組みは確認できませんでした。供給側は正確性や説明責任を重視し、市民は自分に関係があるかを入口に情報を選びます。この発想の違いも、空白の背景にあります。","start":158},{"title":"NASA Social：市民を媒介者とする分散型モデル","text":"NASA Socialは、SNS利用者がミッションや施設について学び、発信する機会を提供するNASAの制度です。選考には三つの原則があります。18歳以上なら誰でも応募できる完全公募、有名性ではなく継続的な発信実績を見る実績重視、そして教師、芸術家、学生、海外からの参加者を含む多様性です。参加者は報道機関と同等の現場アクセスを得る場合があります。ただし旅費は原則自己負担で、参加者が偏る要因にもなります。","start":201},{"title":"SWJの実践：一次情報を日本の生活文脈へ","text":"Space Wave Japanは、宇宙開発を専門家任せにせず、専門知を日常の言葉に翻訳して届ける、市民主導のメディアです。Crew-10関連のNASA Socialに参加し、現場で得た一次情報と体験を、日本の生活の文脈に置き換えて発信しました。ここから、一次情報への近接、専門家との対話、即時の日英変換、発信者固有のネットワークという四つの要素が見えてきました。一方で、機会の不定期さ、ボランティア依存、効果測定や選定基準の未整備という限界もあります。","start":241},{"title":"3つの実践から，制度設計に必要な機能を抽出","text":"この表は三つの実践を、優劣ではなく、制度設計に必要な機能という観点で整理したものです。NASA Socialからは一次情報への公平なアクセス、JAXAの公式広報からは、非宇宙分野の市民発信者に現場アクセスを制度化する必要性、SWJからは日本社会との接続と編集上の独立性という要件を抽出しました。課題もそれぞれ異なり、自己負担による参加者の偏り、宇宙親和層への偏り、そして規模と評価データの不足があります。","start":286},{"title":"提案：Japan Space Social（小規模実証）","text":"これらを踏まえ、日本型パイロット「Japan Space Social」を提案します。2027年度を想定した12か月の実証で、打上げ、科学探査、産業や地域利用といった異なる分野のイベント3件に、各10人、計30人の市民コミュニケーターを公募します。対象には教育、医療、防災、子育て、観光などの非宇宙分野を含め、フォロワー数だけでなく、独自の対象層、継続性、正確性、多様性で選考します。目的は広報量の増加ではなく、届きにくい層への到達と、その変化を測ることです。","start":327},{"title":"制度設計：信頼性と継続性を支える仕組み","text":"制度設計の要点は、信頼性と継続性です。政策所管、現場提供機関、独立事務局、外部評価者を分け、肯定的な発信を参加条件にしません。招待や所属は開示し、原稿の事前承認も、安全や機密に関わる確認を除いて求めません。参加者は報道機関ではなく、市民コミュニケーターと位置付けます。また、地方参加者への旅費支援、用語集やファクトチェック体制、参加者コミュニティを用意し、参加前から6か月後までの変化を追跡します。","start":373},{"title":"評価設計：発信量ではなく，変化と再現性を測る","text":"評価では、閲覧数やフォロワー数を政策効果とはみなしません。開始前に参加者の属性を記録し、直後に到達、前後で知識や自己関連性、自己効力感、3か月後と6か月後に学習や応募などの行動、終了時に費用を測ります。主要な判定は五つです。従来届かなかった層に届いたか、知識と自己関連性が改善したか、行動が確認できたか、安全と独立性を両立できたか、同じ費用で再現できるか、です。目標値は、ベースライン調査の後に固定します。","start":413},{"title":"考察：根拠がないから進まない，という循環を断つ","text":"現在は、効果を測る仕組みがないために制度化の根拠が蓄積されず、根拠が乏しいために制度化が進まない、という循環が生じている可能性があります。Japan Space Socialは、この循環を小さな実証で断ち切る試みです。ただし市民発信者を政府の無償広告として扱えば、制度の信頼は失われます。批判的な見解を許容し、支援や所属を開示し、訂正できる仕組みが前提です。SX-CRANEなどの人材施策と接続すれば、関心形成から人材参入までを一体で設計できると考えます。","start":453},{"title":"まとめ：まず小さく試し，証拠で判断する","text":"まとめです。まず30人、3イベント、12か月の小規模な実証を行い、参加前後と3か月後、6か月後の変化を測定します。その結果に基づいて、拡大、修正、終了を判断します。段階的に導入することで、政策リスクを抑えながら、日本に合った参加型の宇宙コミュニケーションを検証できます。左のQRコードから、簡単なアンケートにご協力ください。右はSpace Wave Japanのウェブサイトです。ご清聴ありがとうございました。","start":499}];
+const LIMIT=600; // 発表時間10分
+const $=id=>document.getElementById(id);
+let index=0,playing=false,startedAt=0,elapsed=0,lastFrame=0,font=Number(localStorage.getItem('ukarenFont')||0),speedIndex=1;
+const speeds=[.75,1,1.25,1.5];
+const reader=$('reader');
+const fmt=sec=>`${String(Math.floor(sec/60)).padStart(2,'0')}:${String(sec%60).padStart(2,'0')}`;
+function esc(s){return s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')}
+function paras(s){return s.split(/(?<=。)/u).filter(v=>v.trim()).map(v=>'<p>'+esc(v.trim())+'</p>').join('')}
+function show(n){index=Math.max(0,Math.min(slides.length-1,n));const s=slides[index];$('counter').textContent=`スライド ${index+1} / ${slides.length}`;$('target').textContent=`目安：${fmt(s.start)} 開始`;$('heading').textContent=s.title;$('speech').innerHTML=paras(s.text);reader.scrollTop=0;$('progress').style.width=`${(index+1)/slides.length*100}%`;$('prev').disabled=index===0;$('next').disabled=index===slides.length-1}
+function setFont(){document.documentElement.style.setProperty('--size',`${Math.max(20,Math.min(56,(innerWidth<550?29:34)+font))}px`);localStorage.setItem('ukarenFont',font)}
+function now(){return Math.floor(elapsed+(playing?(performance.now()-startedAt)/1000:0))}
+function renderTimer(){const sec=now();$('timer').textContent=fmt(sec);$('timer').classList.toggle('over',sec>=LIMIT)}
+function tick(t){if(playing){if(lastFrame){reader.scrollTop+=Math.max(0,t-lastFrame)*.02*speeds[speedIndex]}lastFrame=t;renderTimer()}requestAnimationFrame(tick)}
+function playPause(){if(playing){elapsed+=(performance.now()-startedAt)/1000;playing=false;lastFrame=0;$('play').textContent='▶ 再開'}else{startedAt=performance.now();playing=true;lastFrame=0;$('play').textContent='Ⅱ 一時停止'}renderTimer()}
+$('prev').onclick=()=>show(index-1);$('next').onclick=()=>show(index+1);$('play').onclick=playPause;
+$('reset').onclick=()=>{if(confirm('タイマーを0に戻しますか？')){elapsed=0;startedAt=performance.now();renderTimer()}};
+$('speed').onclick=()=>{speedIndex=(speedIndex+1)%speeds.length;$('speed').textContent=`${speeds[speedIndex]}×`};
+$('smaller').onclick=()=>{font-=3;setFont()};$('larger').onclick=()=>{font+=3;setFont()};
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')show(index+1);if(e.key==='ArrowLeft')show(index-1);if(e.key===' '){e.preventDefault();playPause()}});
+setFont();show(0);renderTimer();requestAnimationFrame(tick);
+</script>
+</body></html>
