@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>宇科連 3P19 | 自動スクロール・プロンプター</title>
+<style>
+:root{color-scheme:dark;--ink:#f9f8f5;--muted:#9fb0cc;--accent:#f3c87f;--bg:#0b1e36;--line:#344967;--size:30px}
+*{box-sizing:border-box}html,body{height:100%;margin:0}
+body{font-family:"Hiragino Sans","BIZ UDPGothic","Yu Gothic",sans-serif;background:var(--bg);color:var(--ink);overflow:hidden}
+header{position:fixed;top:0;left:0;right:0;z-index:3;height:64px;padding:8px max(12px,env(safe-area-inset-left));display:flex;align-items:center;gap:8px;background:#08172b;border-bottom:1px solid var(--line)}
+.info{flex:1;min-width:0}.info b{display:block;color:var(--accent);font-size:14px;letter-spacing:.04em}.info span{display:block;color:var(--muted);font-size:12px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.timer{font-variant-numeric:tabular-nums;font-weight:700;font-size:18px;color:var(--accent);text-align:right;line-height:1.1}.timer small{display:block;font-size:11px;color:var(--muted);font-weight:400}.timer.over{color:#ff6b6b}
+.btn{background:none;color:var(--ink);border:1px solid var(--line);border-radius:10px;min-width:40px;height:40px;font-size:15px}
+#reader{position:fixed;top:64px;bottom:0;left:0;right:0;overflow-y:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}#reader::-webkit-scrollbar{display:none}
+article{max-width:820px;margin:auto;padding:38vh 22px 70vh}
+section{margin-bottom:1.6em}
+h2{font-size:calc(var(--size)*.62);color:var(--accent);margin:0 0 .6em;line-height:1.4;border-top:1px solid var(--line);padding-top:.7em}
+h2 span{display:inline-block;margin-right:.6em;color:#0b1e36;background:var(--accent);border-radius:6px;padding:0 .4em}
+p{font-size:var(--size);font-weight:600;line-height:1.65;margin:0 0 .7em}
+p.cue{font-size:calc(var(--size)*.6);color:var(--muted);font-weight:400}
+.guide{position:fixed;left:0;right:0;top:calc(64px + 30vh);height:2px;background:rgba(243,139,44,.45);z-index:2;pointer-events:none}
+.start{position:fixed;inset:64px 0 0 0;z-index:4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:rgba(8,23,43,.92);text-align:center;padding:24px}
+.start button{background:#f38b2c;color:#0b1e36;border:0;border-radius:16px;font-size:24px;font-weight:800;padding:18px 40px}
+.start p{font-size:15px;font-weight:400;color:var(--muted);line-height:1.6;margin:0}
+.paused{position:fixed;bottom:calc(16px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);z-index:3;background:#29426b;border-radius:999px;padding:8px 18px;font-size:14px;display:none}
+@media(max-width:550px){:root{--size:26px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="info"><b id="cur">スライド —</b><span id="ttl"></span></div>
+  <button class="btn" id="slower" aria-label="遅く">遅</button>
+  <button class="btn" id="faster" aria-label="速く">速</button>
+  <button class="btn" id="smaller" aria-label="文字を小さく">A−</button>
+  <button class="btn" id="larger" aria-label="文字を大きく">A＋</button>
+  <div class="timer" id="timer">00:00<small id="pace">350字/分</small></div>
+</header>
+<div class="guide"></div>
+<main id="reader"><article id="art">
+<section data-k="0" data-chars="213"><h2><span>スライド 1</span>表紙</h2>
+<p>Space Wave Japanの黒野亜矢子です。今日は、ロケットの打ち上げ場や衛星の工場で聞いた話を、ふだん宇宙の情報を探さない人にも届ける仕組みを提案します。</p>
+<p>年末年始に会う家族や友人を、一人思い浮かべてください。その人に「宇宙の仕事をしています」と話したら、何と聞かれるでしょうか。</p>
+<p class="cue">（3秒待つ）</p>
+<p>では、宇宙業界以外の人が、宇宙の仕事をしている人に直接会って、質問できたら。帰ってきて、誰に、どんな話をするでしょうか。</p>
+</section>
+<section data-k="1" data-chars="208"><h2><span>スライド 2</span>“Space is the province of all humankind”</h2>
+<p>宇宙条約は、宇宙の探査と利用を「全人類に認められる活動分野」と定めています。では、宇宙の技術を何に使い、誰に届けるかを考えるとき、市民はどこで疑問や経験を伝えられるでしょうか。</p>
+<p>たとえば、「大雨のあと、衛星画像で自分の地域の何が分かるのか」。衛星をつくる人に答えを聞くと、「その情報が、いつ、誰に届けば役立つだろう」と、次の問いが生まれます。こうした問いが生まれる場を考える手がかりが、NASA Socialです。</p>
+</section>
+<section data-k="2" data-chars="103"><h2><span>スライド 3</span>NASA Socialとは？　YouTuber、インフルエンサー、一般の市民がNASAの施設や職員を取材・発信する仕組み</h2>
+<p>NASA Socialは、NASAが公募で選んだYouTuberや一般の市民を招き、施設や職員を取材して発信してもらう仕組みです。写真は、私たちのメンバーも参加したアルテミスⅡのNASA Socialです。</p>
+</section>
+<section data-k="3" data-chars="460"><h2><span>スライド 4</span>誰を招くかで、誰に届くかが変わる</h2>
+<p>NASAは公募で選んだ人を打ち上げ場や施設に招きます。私たちのメンバーが参加した回には、旅行ブログを書く人、彫刻家、中古車販売の仕事をしている人もいました。</p>
+<p>同じ場所を見ても、どこに目がいくかは人によって違いますし、ふだん投稿を読んでくれる人も違います。彫刻家のフォロワーはアート好き、中古車販売の人のフォロワーは車好きです。宇宙のニュースを見ない人の画面にも、宇宙の話が流れます。運営に関わる方は、NASAのサイトを自分から見に行かない人にも、宇宙の話を届けたいと話していました。NASA Socialは、NASAや従来の報道とは違う読者に届くことを、応募の条件にしています。既報のアンケートでも、宇宙に詳しくないフォロワーから強い反応や新しい質問があったという声がありました。だから、誰を招くかが大事なんです。</p>
+<p>私たちのメンバーも、招待を受けたとき、これまでの発信を見てもらえたと感じました。普段は入れない場所で、働く人に直接聞ける。そう思うと、何を聞いて、日本で読んでくれる人に何を届けようかと考え始めました。</p>
+</section>
+<section data-k="4" data-chars="179"><h2><span>スライド 5</span>物理的な距離</h2>
+<p>では、日本ではどうでしょうか。宇宙開発に携わる人に直接聞ける機会は限られています。機会があっても、「専門家でない自分が語っていいのかな」とためらう人はいます。</p>
+<p>一方、スマホで地図を開くだけでも、私たちは宇宙の技術を使っています。技術者には何ができるかが分かります。使う人には、どんな場面で役立つかが分かります。技術の使い方を考えるには、その両方が必要です。</p>
+</section>
+<section data-k="5" data-chars="149"><h2><span>スライド 6</span>理念はある。「道筋」と「測り方」は？</h2>
+<p>宇宙基本計画などの政策文書でも、宇宙への関心を人材育成につなげる方向が示されています。そこで私たちが考えたのは、関心を持った人が次に何をするのか、ということです。</p>
+<p>見学して「面白かったね」と帰るのも、大切な体験です。そこからもう少し知りたいと思ったとき、何があれば次の一歩を踏み出せるでしょうか。</p>
+</section>
+<section data-k="6" data-chars="213"><h2><span>スライド 7</span>宇宙への関心を、どう次の行動につなげるか</h2>
+<p>旅行ブログを書く人が、見学先で「山あいでスマホの地図の現在地がずれるのは、なぜですか」と聞いたとします。教わったことを旅行の記事に書くと、読者から「私もあの温泉街で同じことがありました」と返ってくるかもしれません。別の質問が来て、自分でもう一度調べることもあるでしょう。</p>
+<p>誰かに伝えることで、聞いた人にも、伝えた本人にも次の学びが生まれるかもしれません。私たちは、そのきっかけをどうつくり、変化をどう確かめるかを考えました。</p>
+</section>
+<section data-k="7" data-chars="174"><h2><span>スライド 8</span>研究の問いと方法</h2>
+<p>日本の政策文書とNASA Socialの資料を読み、実際にNASA Socialにも参加しました。写真は2025年3月、ケネディ宇宙センターのロケット組立棟です。大西卓哉宇宙飛行士が搭乗したCrew-10の打ち上げに合わせて訪ねました。参加者9人と未参加者25人の既報アンケート、私たちの活動記録も参照し、日本で何を試し、何を測るかを整理しました。</p>
+</section>
+<section data-k="8" data-chars="154"><h2><span>スライド 9</span>Space Wave Japanの実践</h2>
+<p>私たちも、市民から渡航費の支援を受けてCrew-10を取材し、現地で聞いた話を日本の読者に届けました。ただ、取材の機会は不定期で、活動はボランティアに頼っています。誰に届き、その人が何をしたかまで確かめる仕組みもありません。この経験から、施設を訪ねる機会と、伝えた後を確かめる方法の両方が必要だと考えました。</p>
+</section>
+<section data-k="9" data-chars="88"><h2><span>スライド 10</span>市民と宇宙をつなぐ3つの仕組みを比べる</h2>
+<p>NASA Socialの施設に入れること、JAXAの正確な情報、市民がふだんの読者に届けられること。この三つの強みを組み合わせたのが、Japan Space Socialです。</p>
+</section>
+<section data-k="10" data-chars="142"><h2><span>スライド 11</span>施設公開で聞いた話を、来場しない人にも</h2>
+<p>JAXAや企業の施設公開では、すでに来場者が実物を見て、専門家に直接質問できます。その機会を生かし、会場に来なかった人にも、仕事や暮らしとの接点から伝えてもらうのが今回の提案です。</p>
+<p>受け入れ側にも、どんな人に話が届き、どの説明で関心を持ったか、どんな質問が返ってきたかを共有します。</p>
+</section>
+<section data-k="11" data-chars="122"><h2><span>スライド 12</span>30人</h2>
+<p>提案は、2027年度に12か月、合わせて30人程度、3件の小規模な実証です。宇宙を専門としない分野で発信する高校生以上の方も対象です。協力いただく組織ごとに、既存の公開や見学の機会を一つ選び、公開できる工程や話題から始めることを想定しています。</p>
+</section>
+<section data-k="12" data-chars="138"><h2><span>スライド 13</span>進め方：2つのグループで比べる</h2>
+<p>参加者を、現地で見学し専門家と話して発信するグループと、先にオンラインで説明を聞くグループに分けます。参加前、直後、3か月後、6か月後に同じ質問をして、変化を比べます。比較グループにも後日、現地を訪ねる機会を設けます。小規模な実証なので、まず変化の傾向と運営上の課題を見ます。</p>
+</section>
+<section data-k="13" data-chars="148"><h2><span>スライド 14</span>制度設計：信頼と継続を支える仕組み（1/4）</h2>
+<p>受け入れ側には、公開できる範囲を決めていただき、施設を案内し、質問に答えていただく想定です。募集や連絡、アンケートは事務局が担い、結果は評価担当がまとめます。参加者は疑問に思ったことも発信できます。好意的な投稿は参加の条件にしません。</p>
+<p>新しい説明資料を一からつくっていただく前提ではありません。</p>
+</section>
+<section data-k="14" data-chars="96"><h2><span>スライド 15</span>制度設計：信頼と継続を支える仕組み（2/4）</h2>
+<p>次に、誰を招くかです。宇宙が専門でない人も公募し、選ばれた人を市民コミュニケーターとして正式に招待します。招待を受けて「自分の分野から質問していいんだ」と思えることも、大事にしたいところです。</p>
+</section>
+<section data-k="15" data-chars="85"><h2><span>スライド 16</span>制度設計：信頼と継続を支える仕組み（3/4）</h2>
+<p>見学の当日は、専門家に質問できる時間を取り、発信に使える用語集や事実確認の窓口を用意します。JAXAや受け入れ企業が公式SNSで参加者の投稿を紹介することも考えています。</p>
+</section>
+<section data-k="16" data-chars="108"><h2><span>スライド 17</span>制度設計：信頼と継続を支える仕組み（4/4）</h2>
+<p>撮影できる場所、公開できる情報、当日の安全ルールは受け入れ側と事前に確認します。たとえば、公開可能な展示や工程だけを案内する形でも実施できます。誤りがあった場合の訂正手順を共有し、発信後の変化を6か月後まで追います。</p>
+</section>
+<section data-k="17" data-chars="164"><h2><span>スライド 18</span>発信の量ではなく、人の変化を測る</h2>
+<p>評価では、ふだん宇宙の情報を見ない人に届いたか、何を知り、次に何をしたかを、受け手にも聞きます。関連する仕事を調べた、家族に話した、見学に行った。そうした行動を見ます。</p>
+<p>受け入れ側には、準備と当日にかかった人手や費用を聞きます。読者から返ってきた質問と評価結果を協力先に共有し、次も続けられるか、何を見直すかを一緒に考えます。</p>
+</section>
+<section data-k="18" data-chars="112"><h2><span>スライド 19</span>実証と評価</h2>
+<p>この結果をもとに、続ける価値があるかを判断します。市民を無償の広告塔にしないことが前提です。受けた支援は明らかにし、何をどう伝えるかは本人が決めます。関心を持った人には、既存の学びや人材育成の機会につなぐことも考えられます。</p>
+</section>
+<section data-k="19" data-chars="129"><h2><span>スライド 20</span>公開できる施設や工程</h2>
+<p>衛星企業、ロケット企業、JAXAの皆さま。すでに行っている見学会や施設公開で、「この工程なら見せられる」「この話を別の分野の人にも届けたい」と思うものがあれば、発表後にぜひお声がけください。何を公開できるか、誰に来てもらうか、その一回から一緒に考えたいです。</p>
+</section>
+<section data-k="20" data-chars="335"><h2><span>スライド 21</span>宇宙を、自分の言葉で語れる社会へ。</h2>
+<p>冒頭で思い浮かべていただいた家族や友人に戻ります。見学先で聞いた衛星画像の話を写真と一緒に送ったら、その人は自宅の周りのハザードマップを開くかもしれません。「次に大雨が降ったとき、この情報は誰が届けるの？」と聞くかもしれません。</p>
+<p>誰に、どんな形で技術を届けるか。その選択を考えるとき、使う人の経験にも耳を傾けたい。これが、私たちの宇宙倫理の問いです。まずは実証で、誰に届き、どんな行動や問いが生まれるかを確かめます。その先には、市民が日本の宇宙開発の方針を考える議論に関われる機会をつくりたいと考えています。</p>
+<p class="cue">（一拍）</p>
+<p>皆さんの職場なら、誰を招き、何を聞いてもらいたいですか。画面右のアンケート用QRコードから、ご意見をお寄せください。ご清聴ありがとうございました。</p>
+</section>
+</article></main>
+<div class="start" id="start">
+  <button id="go">▶ 開始</button>
+  <p>開始後は、最後まで自動で流れます（約10分03秒・350字/分）。<br>画面をタップすると一時停止／再開します。<br>オレンジの線の位置を読むと、ペースが合います。</p>
+</div>
+<div class="paused" id="pausedMsg">一時停止中（タップで再開）</div>
+<script>
+const $=id=>document.getElementById(id);
+const reader=$('reader'), art=$('art'), secs=[...document.querySelectorAll('section')];
+const TOTAL=3520, LIMIT=600;
+let cpm=Number(localStorage.getItem('ukarenCpm')||350), font=Number(localStorage.getItem('ukarenAutoFont')||0);
+let playing=false, started=false, elapsed=0, t0=0, last=0, pos=0;
+// 各セクションの文字数の累計（字数ベースで「読むべき位置」を計算する）
+const cum=[];let acc=0;secs.forEach(s=>{cum.push(acc);acc+=Number(s.dataset.chars)});
+const fmt=s=>`${String(Math.floor(s/60)).padStart(2,'0')}:${String(Math.floor(s%60)).padStart(2,'0')}`;
+function guideY(){return reader.clientHeight*0.30}
+// 経過字数 → その文字が案内線に来るスクロール位置（セクション内は高さで按分）
+function targetScroll(chars){
+  let k=cum.findIndex((c,i)=>chars<c+Number(secs[i].dataset.chars));
+  if(k<0){const s=secs[secs.length-1];return s.offsetTop+s.offsetHeight-guideY()}
+  const s=secs[k], frac=(chars-cum[k])/Number(s.dataset.chars);
+  return s.offsetTop+s.offsetHeight*frac-guideY();
+}
+function now(){return elapsed+(playing?(performance.now()-t0)/1000:0)}
+function tick(ts){
+  if(playing){
+    const chars=Math.min(TOTAL,now()*cpm/60);
+    const goal=targetScroll(chars);
+    pos+=(goal-pos)*0.12; reader.scrollTop=pos;
+    if(chars>=TOTAL){pause();}
+  }
+  render();requestAnimationFrame(tick);
+}
+function render(){
+  const sec=now(); $('timer').firstChild.nodeValue=fmt(sec); $('timer').classList.toggle('over',sec>=LIMIT);
+  const y=reader.scrollTop+guideY(); let k=0; secs.forEach((s,i)=>{if(s.offsetTop<=y)k=i});
+  const h=secs[k].querySelector('h2'); $('cur').textContent=h.querySelector('span').textContent+' / '+21; $('ttl').textContent=h.textContent.replace(h.querySelector('span').textContent,'');
+}
+async function keepAwake(){try{if('wakeLock'in navigator){window._wl=await navigator.wakeLock.request('screen')}}catch(e){}}
+function play(){t0=performance.now();playing=true;$('pausedMsg').style.display='none';keepAwake()}
+function pause(){if(!playing)return;elapsed+=(performance.now()-t0)/1000;playing=false;$('pausedMsg').style.display='block'}
+$('go').onclick=e=>{e.stopPropagation();$('start').style.display='none';started=true;pos=reader.scrollTop;play()};
+reader.addEventListener('click',()=>{if(!started)return;playing?pause():play()});
+// 指でスクロールしたら、その位置から読み直せるよう経過時間を合わせる
+reader.addEventListener('touchend',()=>{if(!started)return;setTimeout(()=>{pos=reader.scrollTop;const y=pos+guideY();let k=0;secs.forEach((s,i)=>{if(s.offsetTop<=y)k=i});const s=secs[k];const frac=Math.max(0,Math.min(1,(y-s.offsetTop)/s.offsetHeight));const chars=cum[k]+frac*Number(s.dataset.chars);elapsed=chars/cpm*60;t0=performance.now()},350)});
+function setCpm(v){const chars=now()*cpm/60;cpm=Math.max(200,Math.min(500,v));elapsed=chars/cpm*60;t0=performance.now();localStorage.setItem('ukarenCpm',cpm);$('pace').textContent=cpm+'字/分'}
+$('slower').onclick=e=>{e.stopPropagation();setCpm(cpm-25)};$('faster').onclick=e=>{e.stopPropagation();setCpm(cpm+25)};
+function setFont(){document.documentElement.style.setProperty('--size',`${Math.max(18,Math.min(48,(innerWidth<550?26:30)+font))}px`);localStorage.setItem('ukarenAutoFont',font);pos=targetScroll(now()*cpm/60);reader.scrollTop=pos}
+$('smaller').onclick=e=>{e.stopPropagation();font-=2;setFont()};$('larger').onclick=e=>{e.stopPropagation();font+=2;setFont()};
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&playing)keepAwake()});
+setFont();setCpm(cpm);requestAnimationFrame(tick);
+</script>
+</body></html>
